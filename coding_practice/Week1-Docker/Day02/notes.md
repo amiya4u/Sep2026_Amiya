@@ -1,4 +1,4 @@
-# Day 01 - Multistage Docker
+# Day 02 - Multistage Docker
 
 ## What I built
 Flask app containerized with Multistage Dockerfile. Built image, ran container, verified in browser.
