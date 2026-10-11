@@ -36,3 +36,4 @@ cd ~/Desktop/Devops/Sep2026_Amiya
 git add .
 git commit -m "Day01 - Dockerfile build and run Flask app"
 git push
+git remote -v -> to know where I am pushing 
