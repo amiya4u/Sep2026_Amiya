@@ -17,7 +17,7 @@ docker rm day02-app
 ## What worked
 - Dockerfile written from reference, understood each line
 - Container ran successfully on port 8000
-- Browser showed "Day 02 - Docker Working!"
+- Browser showed "Day 02 - Multi-stage Build!"
 - Could go inside container and see files
 
 ## What I learned
@@ -34,6 +34,6 @@ In our example we dont copy app.py in the build image. We copy it from source to
 ## Git Commands used 
 cd ~/Desktop/Devops/Sep2026_Amiya
 git add .
-git commit -m "Day01 - Dockerfile build and run Flask app"
+git commit -m "Day02 - Multi-stage Dockerfile"
 git push
 git remote -v -> to know where I am pushing 
