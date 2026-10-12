@@ -38,3 +38,10 @@ git add .
 git commit -m "Day03 - Dockerfile networking with Flask and Redis container"
 git push
 
+## Questions I had 
+By default 1 container can talk to another container right ? then why we have to create new network? 
+- Default network (bridge)
+ Yes, by default all containers are on a network called bridge. But there’s a catch — on the default bridge, containers can only talk to each other by IP address, not by name. When you create a custom network (demo-network), Docker gives you DNS resolution — containers find each other by name
+
+- Host networking
+--network host removes the network isolation entirely. The container shares your machine’s network stack directly — no port mapping needed, no virtual network
