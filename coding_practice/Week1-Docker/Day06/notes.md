@@ -38,6 +38,10 @@ depends_on limitation: Only waits for the container to START — not for Postgre
 
 restart: on-failure — If container crashes, Docker restarts it automatically. Solves the timing race: Flask crashes once → postgres finishes init → Flask restarts and connects successfully.
 
+## Commands 
+docker compose down -v
+docker logs container-name
+
 ## Bugs I fixed today:
 - Copied wrong app.py (Day04 Redis version instead of PostgreSQL version)
 - Copied wrong docker-compose.yaml (had ${} variable syntax, no .env file → blank passwords) This ${} syntx needs .env file. 
