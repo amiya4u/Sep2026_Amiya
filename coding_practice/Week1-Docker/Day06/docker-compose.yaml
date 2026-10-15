@@ -1,0 +1,27 @@
+services:
+ web:
+   build: .
+   ports:
+     - "8000:5000"
+   environment:
+      DB_PASSWORD: mypassword
+      DB_USER: myuser
+      DB_NAME: mydb
+      DB_HOST: db
+   depends_on:
+    - db
+   restart: on-failure
+
+ db: 
+  image: postgres:16
+  environment:
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: myuser
+      POSTGRES_DB: mydb
+
+  volumes:
+    - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
+
