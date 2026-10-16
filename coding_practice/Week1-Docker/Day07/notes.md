@@ -1,4 +1,4 @@
-## Day 07 - Push image to ECR (AWS Elastic Container Registry)
+## Day 07 -  Push image to ECR (AWS Elastic Container Registry)
 
 ## What I built: 
 What you’ll do: Take your Flask app image, tag it, and push it to AWS’s private Docker registry — same concept as Docker Hub but on AWS
