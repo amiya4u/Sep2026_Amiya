@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day14-deploy
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-app
+          image: nginx
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_ENV
+              valueFrom:
+               configMapKeyRef: 
+                name: day14-config
+                key: APP_ENV
+            - name: APP_VERSION
+              valueFrom:
+               configMapKeyRef:
+                 name: day14-config
+                 key: APP_VERSION
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: day14-config
+                  key: LOG_LEVEL
+
