@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day15-deploy
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-app
+          image: nginx
+          ports:
+            - containerPort: 80
+          env:
+            - name: PASSWORD
+              valueFrom:
+               secretKeyRef: 
+                name: password
+                key: DB_PASSWORD
+          
