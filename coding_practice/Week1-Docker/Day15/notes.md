@@ -43,3 +43,8 @@ env — the Linux command that prints all environment variables of the current p
 | — pipe. Takes the output of env and sends it as input to the next command.
 
 grep PASSWORD — filter lines containing “PASSWORD” from the env output
+
+## Secret update behavior
+Same as ConfigMap — changes after apply are not reflected in running pods.
+Restart required:
+kubectl rollout restart deployment <deployment-name>

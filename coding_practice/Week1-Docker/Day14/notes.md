@@ -53,3 +53,17 @@ env — the Linux command that prints all environment variables of the current p
 | — pipe. Takes the output of env and sends it as input to the next command.
 
 grep -E "APP_ENV|APP_VERSION|LOG_LEVEL" — filter lines matching any of those three names. -E enables extended regex so | means OR.
+
+## ConfigMap update behavior
+If you change a value in the ConfigMap and re-apply, the running pods
+do NOT pick up the change automatically. Values are baked in at pod startup.
+
+To apply the new values, restart the deployment:
+kubectl rollout restart deployment <deployment-name>
+
+Exception: if ConfigMap is mounted as a file (volume mount), Kubernetes
+updates it automatically without restart.
+
+Rule:
+- Env var injection → restart required
+- Volume mount → auto-updated
