@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day17-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+        - name: day17-flask
+          image: amiya4u/flask-capstone:v2
+          ports:
+            - containerPort: 5000
+        
+
+    
