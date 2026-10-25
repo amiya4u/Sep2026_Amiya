@@ -1,0 +1,61 @@
+## Day 20 - Custom Helm Chart
+
+---
+
+**What I did:**
+- Created a custom Helm chart for the Flask app using `helm create flask-chart`
+- Modified `values.yaml` to point to my Docker Hub image (`amiya4u/flask-capstone:v2`)
+- Deployed the chart to Kubernetes using `helm install`
+- Upgraded the release using `helm upgrade` after fixing port issue
+
+---
+
+**Helm chart structure:**
+```
+flask-chart/
+├── Chart.yaml          # chart metadata (name, version)
+├── values.yaml         # default config values
+└── templates/          # K8s manifest templates
+    ├── deployment.yaml
+    ├── service.yaml
+    ├── hpa.yaml
+    └── ...
+```
+
+---
+
+**Key changes in values.yaml:**
+```yaml
+image:
+  repository: amiya4u/flask-capstone
+  tag: "v2"
+service:
+  type: NodePort
+  port: 5000      # must match Flask app port, NOT nodePort
+```
+
+---
+
+**Port confusion (important lesson):**
+- `port: 5000` in values.yaml = the port your Flask app listens on
+- The Helm template uses this same value for both `containerPort` and `service port`
+- `nodePort: 31205` is set separately inside the template
+- Mistake: I had put `31205` as the port — that broke the app
+
+---
+
+**Commands used:**
+```bash
+helm create flask-chart         # scaffold a new chart
+helm install flask-release ./flask-chart   # deploy
+helm upgrade flask-release ./flask-chart   # re-deploy after changes
+helm list                       # see releases
+helm history flask-release      # see revisions
+```
+
+---
+
+**What is a Helm chart vs a release?**
+- **Chart** = the template/package (like a Docker image)
+- **Release** = a running instance of that chart (like a container)
+- You can install the same chart multiple times as different releases
